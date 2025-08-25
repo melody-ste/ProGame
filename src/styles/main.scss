@@ -1,0 +1,47 @@
+body {
+  background: #191919;
+  margin: 2rem;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+  color: #f6f8f7;
+}
+
+#pageContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; 
+}
+
+.cardGame{
+  background-color: #442b46;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.card-front {
+  display: flex; 
+  align-items: flex-start; 
+  gap: 1rem; 
+}
+
+.card-image{
+  width: 2rem;
+  height: 3rem;
+  object-fit: cover;
+}
+
+
+.card-front .text-column {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background-color: #d20a32;
+  color: white;
+  border-radius: 0px;
+  border: none;
+}

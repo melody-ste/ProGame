@@ -1,52 +1,58 @@
-// webpack.config.js
 import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-// Pour reproduire __dirname dans un module ES6
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
-  entry: './src/index.js', // ton point d'entrée JS
+  entry: './src/index.js',
   output: {
-    filename: 'bundle.js',           // nom du bundle compilé
-    path: path.resolve(__dirname, 'dist'), // dossier de sortie
-    clean: true                      // supprime le contenu existant dans /dist avant build
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,        // pour gérer SCSS
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.js$/,               // pour gérer JS avec Babel
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            sourceType: 'unambiguous'
-          }
-        }
-      }
-    ]
+            sourceType: 'unambiguous',
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html', // ton HTML de base
-      filename: 'index.html'           // HTML final généré dans /dist
-    })
+      template: './public/index.html',
+      filename: 'index.html',
+    }),
   ],
   devServer: {
-    static: path.resolve(__dirname, 'dist'), // dossier à servir
+    static: {
+      directory: path.resolve(__dirname, 'dist'), // <-- servir le HTML compilé
+      watch: true,
+    },
     port: 3000,
     open: true,
-    hot: true
+    hot: true,
+    liveReload: true,
+    client: {
+      overlay: true,
+    },
   },
   resolve: {
-    extensions: ['.js']  // permet d'importer sans mettre l'extension
+    extensions: ['.js'],
   },
-  mode: 'development'
+  mode: 'development',
+  devtool: 'eval-source-map',
 };
