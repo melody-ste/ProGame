@@ -1,5 +1,6 @@
 import { API_KEY } from './config.js';
-console.log('PageList loaded');
+import { PageHeader } from "./components/PageHeader.js";
+
 
 export const PageList = (argument = '') => {
   let games = [];
@@ -15,17 +16,18 @@ export const PageList = (argument = '') => {
   const renderBase = () => {
     const pageContent = document.getElementById('pageContent');
     pageContent.innerHTML = `
+      ${PageHeader()}
       <section class="page-list">
         <div class="controls">
-          <input type="text" id="searchInput" placeholder="Rechercher un jeu..." />
           <select id="platformSelect">
-            <option value="">Toutes les plateformes</option>
+            <option value="">Any</option>
             <option value="pc">PC</option>
             <option value="playstation">PlayStation</option>
             <option value="xbox">Xbox</option>
           </select>
         </div>
-        <div class="articles"></div>
+        <div class="cards-grid articles">
+        </div>
         <button id="showMore">Show more</button>
       </section>
     `;

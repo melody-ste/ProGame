@@ -1,4 +1,5 @@
 import { API_KEY } from './config.js';
+import { PageHeader } from "./components/PageHeader.js";
 
 export const PageDetail = (argument) => {
   const pageContent = document.getElementById('pageContent');
@@ -8,6 +9,7 @@ export const PageDetail = (argument) => {
 
     const displayGame = (gameData) => {
       pageContent.innerHTML = `
+        ${PageHeader()}
         <section class="page-detail">
           <h1>${gameData.name}</h1>
           <p>${gameData.released}</p>

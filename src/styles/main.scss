@@ -9,7 +9,31 @@ h1 {
   color: #f6f8f7;
 }
 
-#pageContent {
+// ========== HEADER ==========
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  color: #d20a32;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.controls input {
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: transparent;
+}
+
+// ========== CARDS ==========
+
+.cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem; 
