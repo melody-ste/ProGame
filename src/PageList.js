@@ -9,6 +9,7 @@ export const PageList = (argument = '') => {
   const init = () => {
     renderBase();
     attachEventListeners();
+    attachEventListeners();
     const searchQuery = argument.trim().replace(/\s+/g, '-');
     fetchGames(searchQuery);
   };
@@ -17,6 +18,10 @@ export const PageList = (argument = '') => {
     const pageContent = document.getElementById('pageContent');
     pageContent.innerHTML = `
       ${PageHeader()}
+      <section>
+        <h1>Welcome,</h1>
+        <p> The Hyper Progame is the world's premier event for computer and video games and related products. At The Hyper Progame, the video game industry's top talent pack the Los Angeles Convention Center, connecting tens of thousands of the best, brighest, and most innovative in the interactive entertainment industry. For three exciting days, leading-edge companies, groundbreaking new technologies, and never-before-seen products will be showcased. The Hyper Progam connects you with both new and existing partners, industry executives, gamers, and social influencers providing unprecedented explosure</p>
+      </section>
       <section class="page-list">
         <div class="controls">
           <select id="platformSelect">
@@ -39,7 +44,7 @@ export const PageList = (argument = '') => {
         <div class="card-inner">
           <div class="card-front">
             <img src="${game.background_image}" alt="${game.name}" class="card-image"/>
-            <div class="text-column">
+            <div>
               <h2>${game.name}</h2>
               <h3>${game.platforms.map(p => p.platform.name).join(', ')}</h3>
             </div>
