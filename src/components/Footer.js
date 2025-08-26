@@ -1,7 +1,7 @@
-export const PageHeader = () => {
+export const PageFooter = () => {
   return `
     <footer class="page-footer">
-      <h6>Mélody Stephan @ 2025 - Fictionnal website for exercice</h6>
+      <h5>Mélody Stephan @ 2025 - Fictionnal website for exercice</h5>
     </footer>
   `;
 };

@@ -117,3 +117,22 @@ button {
   border-radius: 0px;
   border: none;
 }
+
+// ========== FOOTER ========== 
+
+.page-footer h5 {
+  margin-top: 4rem;
+  position: relative;
+  text-align: center;
+  display: inline-block; 
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px; 
+    left: 0;
+    width: 25%; 
+    height: 6px;
+    background-color: $color-primary;
+  }
+}

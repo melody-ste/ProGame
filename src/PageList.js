@@ -1,6 +1,6 @@
 import { API_KEY } from './config.js';
 import { PageHeader } from "./components/PageHeader.js";
-
+import { PageFooter } from "./components/Footer.js";
 
 export const PageList = (argument = '') => {
   let games = [];
@@ -35,6 +35,7 @@ export const PageList = (argument = '') => {
         </div>
         <button id="showMore">Show more</button>
       </section>
+      ${PageFooter()}
     `;
   };
 
@@ -50,10 +51,10 @@ export const PageList = (argument = '') => {
             </div>
           </div>
           <div class="card-hover">
-            <p>Date de sortie : ${game.released}</p>
-            <p>Éditeur : ${game.publishers?.map(p => p.name).join(', ') || 'N/A'}</p>
-            <p>Genres : ${game.genres.map(g => g.name).join(', ')}</p>
-            <p>Note : ${game.rating} (${game.ratings_count} votes)</p>
+            <p>${game.released}</p>
+            <p>${game.publishers?.map(p => p.name).join(', ') || 'N/A'}</p>
+            <p>${game.genres.map(g => g.name).join(', ')}</p>
+            <p>${game.rating} (${game.ratings_count} votes)</p>
           </div>
         </div>
       </article>
@@ -97,7 +98,7 @@ export const PageList = (argument = '') => {
   };
 
   const fetchGames = (search = '', platform = '') => {
-    const pageContent = document.getElementById('pageContent'); // récupéré ici aussi
+    const pageContent = document.getElementById('pageContent');
     let url = `https://api.rawg.io/api/games?key=${API_KEY}&page_size=50`;
     if (search) url += `&search=${search}`;
     if (platform) url += `&platforms=${platform}`;
