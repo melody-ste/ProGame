@@ -25,10 +25,10 @@ export const PageList = (argument = '') => {
       <section class="page-list">
         <div class="controls">
           <select id="platformSelect">
-            <option value="">Any</option>
-            <option value="pc">PC</option>
-            <option value="playstation">PlayStation</option>
-            <option value="xbox">Xbox</option>
+            <option value="">Plateform : Any</option>
+            <option value="pc">Plateform : PC</option>
+            <option value="playstation">Plateform : PlayStation</option>
+            <option value="xbox">Plateform : Xbox</option>
           </select>
         </div>
         <div class="cards-grid articles">
