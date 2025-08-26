@@ -40,7 +40,7 @@ export const PageList = (argument = '') => {
 
   const createCard = (game) => {
     return `
-      <article class="cardGame">
+      <article class="cardGame" onclick="location.href='#pagedetail/${game.id}'">
         <div class="card-inner">
           <div class="card-front">
             <img src="${game.background_image}" alt="${game.name}" class="card-image"/>
@@ -55,7 +55,6 @@ export const PageList = (argument = '') => {
             <p>Genres : ${game.genres.map(g => g.name).join(', ')}</p>
             <p>Note : ${game.rating} (${game.ratings_count} votes)</p>
           </div>
-          <button class="details-link" onclick="location.href='#pagedetail/${game.id}'">Voir détail</button>
         </div>
       </article>
     `;
