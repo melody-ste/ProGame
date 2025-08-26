@@ -1,4 +1,5 @@
 // ========== VARIABLES ==========
+
 $color-bg: #191919;
 $color-primary: #d20a32;
 $color-text: white;
@@ -6,37 +7,59 @@ $color-border: #ccc;
 
 $font-family-main: Verdana, Geneva, Tahoma, sans-serif;
 
+$font-size-h1: 2.5rem;
+
+$spacing-small: 0.6rem;
+$spacing-medium: 1rem;
+$spacing-large: 2.5rem;
+$spacing-xlarge: 4rem;
+
+$mobile-width: 768px;
+
+// ========== MIXINS ==========
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin mobile {
+  @media (max-width: $mobile-width) {
+    @content;
+  }
+}
+
 // ========== STYLES ==========
 body {
   background: $color-bg;
-  margin: 2rem;
+  margin: $spacing-xlarge;
   color: $color-text;
   font-family: $font-family-main;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: $font-size-h1;
 }
 
-// ========== HEADER ==========
+// ========== HEADER PAGELIST ==========
 
 .page-header {
-  display: flex;
+  @include flex-center;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: $spacing-xlarge;
 }
 
 .page-title {
   color: $color-primary;
-  font-size: 2.5rem;
+  font-size: $font-size-h1;
   font-weight: bold;
 }
 
 .controls input {
-  padding: 0.6rem;
-  border-radius: 10px;
-  border: 1px solid $color-border;
+  padding: $spacing-small;
+  border-radius: 20px;
+  border: 1.5px solid $color-border;
   background-color: transparent;
   color: $color-border;
 }
@@ -46,7 +69,7 @@ h1 {
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem; 
+  gap: $spacing-large; 
 }
 
 .cardGame {
@@ -86,7 +109,7 @@ h1 {
 .card-hover {
   background: $color-bg;
   color: $color-text;
-  padding: 1rem;
+  padding: $spacing-medium;
   opacity: 0;
 }
 
@@ -98,11 +121,49 @@ h1 {
   opacity: 1;
 }
 
+// ========== HEADER PAGEDETAILS ==========
+
+.page-d-title {
+  @include flex-center;
+  justify-content: space-between;
+  margin-bottom: $spacing-large;
+}
+
+.titles {
+  color: $color-primary;
+}
+
+.bg-image {
+  width: 100%;
+  height: 50rem;
+  object-fit: cover;
+}
+
+.rating {
+  color: $color-primary;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.page-four-column {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-large; 
+}
+
+.page-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-large; 
+}
+
+// ========== COMPONENTS ========== 
+
 select {
   background-color: $color-primary;
-  padding: 0.6rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  padding: $spacing-small;
+  margin-top: $spacing-medium;
+  margin-bottom: $spacing-large;
   color: $color-text;
   border-radius: 0px;
   border: none;
@@ -111,8 +172,8 @@ select {
 
 button {
   background-color: $color-primary;
-  padding: 0.6rem;
-  margin-top: 1rem;
+  padding: $spacing-medium;
+  margin-top: $spacing-medium;
   color: $color-text;
   border-radius: 0px;
   border: none;
@@ -121,7 +182,7 @@ button {
 // ========== FOOTER ========== 
 
 .page-footer h5 {
-  margin-top: 4rem;
+  margin-top: $spacing-xlarge;
   position: relative;
   text-align: center;
   display: inline-block; 

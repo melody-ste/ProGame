@@ -13,67 +13,71 @@ export const PageDetail = (argument) => {
         ${PageHeader()}
         <section class="page-detail">
         <img src="${gameData.background_image}" alt="${gameData.name}" class="bg-image"/>
-        <button id="checkwebsite">Check Website</button>
+        <button id="checkwebsite">
+            <a href="${gameData.website}" target="_blank">Check Website</a>
+          </button>
         </section>
 
-        <h1 class="title">${gameData.name}</h1>
-        <p>${gameData.rating} (${gameData.ratings_count} votes)</p>
+        <div class="page-d-title">
+          <h1>${gameData.name}</h1>
+          <p class="rating">${gameData.rating}/5 -${gameData.ratings_count} votes</p>
+        </div>
 
         <section class="page-detail">
           <div>
-            <h6>Plot</h6>
+            <p><strong>Plot</strong></p>
             <p>${gameData.description}</p>
           </div>
           <div>
-            <h6>GamePlay</h6>
+            <p><strong>GamePlay</strong></p>
             <p></p>
           </div>
         </section>
 
         <section class="page-four-column">
           <div>
-            <h6>Release Date</h6>
+            <p><strong>Release Date</strong></p>
             <p>${gameData.released}</p>
           </div>
           <div>
-            <h6>Developer</h6>
+            <p><strong>Developer</strong></p>
             <p></p>
           </div>
           <div>
-            <h6>Plateforms</h6>
-            <p>${gameData.platforms}</p>
+            <p><strong>Plateforms</strong></p>
+            <p>${gameData.platforms.map(p => p.platform.name).join(', ')}</p>
           </div>
           <div>
-            <h6>Publisher</h6>
-            <p>${gameData.publishers}</p>
+            <p><strong>Publisher</strong></p>
+            <p>${gameData.publishers?.map(p => p.name).join(', ') || 'N/A'}</p>
           </div>
         </section>
 
         <section class="page-two-column">
           <div>
-            <h6>Genre</h6>
-            <p>${gameData.genres}</p>
+            <p><strong>Genre</strong></p>
+            <p>${gameData.genres.map(g => g.name).join(', ')}</p>
           </div>
           <div>
-            <h6>Tages</h6>
-            <p></p>
+            <p><strong>Tags</strong></p>
+            <p>${gameData.tags.map(t => t.name).join(', ')}</p>
           </div>
         </section>
 
         <section>
-          <h1>BUY</h1>
+          <h1 class="titles">BUY</h1>
         </section>
 
         <section>
-          <h1>TRAILER</h1>
+          <h1 class="titles">TRAILER</h1>
         </section>
 
         <section>
-          <h1>SCREENSHOTS</h1>
+          <h1 class="titles">SCREENSHOTS</h1>
         </section>
 
         <section>
-          <h1>SIMILAR GAMES</h1>
+          <h1 class="titles">SIMILAR GAMES</h1>
         </section>
 
         
