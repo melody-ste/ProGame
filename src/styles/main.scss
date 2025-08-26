@@ -123,6 +123,28 @@ h1 {
 
 // ========== HEADER PAGEDETAILS ==========
 
+.page-detail {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.page-detail .bg-image {
+  width: 100vw;
+  height: 50rem;
+  object-fit: cover;         
+  display: block;
+  margin-left: calc(-1 * (100vw - 100%)/2); 
+}
+
+.page-detail button {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
 .page-d-title {
   @include flex-center;
   justify-content: space-between;
@@ -165,6 +187,11 @@ h1 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: $spacing-large; 
+  img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover; 
+  }
 }
 
 // ========== COMPONENTS ========== 

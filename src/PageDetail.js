@@ -38,7 +38,7 @@ export const PageDetail = (argument) => {
   };
 
   const preparePage = () => {
-    const displayGame = (gameData, trailerData, similarGames) => {
+    const displayGame = (gameData, trailerData, similarGames, screenshotsData) => {
       pageContent.innerHTML = `
         ${PageHeader()}
         <section class="page-detail">
@@ -51,14 +51,10 @@ export const PageDetail = (argument) => {
           <p class="rating">${gameData.rating || 'N/A'}/5 - ${gameData.ratings_count || 0} votes</p>
         </div>
 
-        <section class="page-detail">
+        <section>
           <div>
             <p><strong>Plot</strong></p>
             <p>${gameData.description || 'No description available'}</p>
-          </div>
-          <div>
-            <p><strong>GamePlay</strong></p>
-            <p>${gameData.metacritic ? "Metacritic Score : " + gameData.metacritic : "No detailed gameplay info available."}</p>
           </div>
         </section>
 
@@ -112,7 +108,12 @@ export const PageDetail = (argument) => {
         <section>
           <h1 class="titles">SCREENSHOTS</h1>
           <div class="screenshots">
-            ${gameData.short_screenshots?.length > 0 ? gameData.short_screenshots.map(s => `<img src="${s.image}" alt="screenshot"/>`).join('') : '<p>No screenshots available</p>'}
+            ${screenshotsData?.results?.length > 0
+              ? screenshotsData.results.map(s => `
+                  <img src="${s.image}" alt="screenshot" class="screenshot"/>
+                `).join('')
+              : '<p>No screenshots available</p>'
+            }
           </div>
         </section>
 
@@ -135,10 +136,11 @@ export const PageDetail = (argument) => {
     Promise.all([
       fetchJsonSafe(`https://api.rawg.io/api/games/${cleanedArgument}?key=${API_KEY}`),
       fetchJsonSafe(`https://api.rawg.io/api/games/${cleanedArgument}/movies?key=${API_KEY}`),
-      fetchJsonSafe(`https://api.rawg.io/api/games/${cleanedArgument}/suggested?key=${API_KEY}`)
-    ]).then(([gameData, trailerData, similarGames]) => {
+      fetchJsonSafe(`https://api.rawg.io/api/games/${cleanedArgument}/suggested?key=${API_KEY}`),
+      fetchJsonSafe(`https://api.rawg.io/api/games/${cleanedArgument}/screenshots?key=${API_KEY}`)
+    ]).then(([gameData, trailerData, similarGames, screenshotsData]) => {
       if (!gameData) return pageContent.innerHTML = "<p>Impossible de charger les informations du jeu.</p>";
-      displayGame(gameData, trailerData, similarGames);
+      displayGame(gameData, trailerData, similarGames, screenshotsData);
     });
   };
 
