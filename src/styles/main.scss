@@ -157,6 +157,16 @@ h1 {
   gap: $spacing-large; 
 }
 
+.trailer {
+  width: 100%;
+}
+
+.screenshots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-large; 
+}
+
 // ========== COMPONENTS ========== 
 
 select {
@@ -177,6 +187,21 @@ button {
   color: $color-text;
   border-radius: 0px;
   border: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  color: $color-text;
+}
+
+a {
+  color: $color-text;
+  text-decoration-color: $color-primary;
+  font-weight: bold;
 }
 
 // ========== FOOTER ========== 
