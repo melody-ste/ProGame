@@ -1,5 +1,5 @@
 import { API_KEY } from './config.js';
-import { PageHeader } from "./components/PageHeader.js";
+import { PageHeader, attachHeaderEvents } from "./components/PageHeader.js";
 import { PageFooter } from "./components/Footer.js";
 
 const fetchJsonSafe = (url) => {
@@ -109,9 +109,11 @@ export const PageDetail = (argument) => {
           <h1 class="titles">SCREENSHOTS</h1>
           <div class="screenshots">
             ${screenshotsData?.results?.length > 0
-              ? screenshotsData.results.map(s => `
-                  <img src="${s.image}" alt="screenshot" class="screenshot"/>
-                `).join('')
+              ? screenshotsData.results
+                  .slice(0, 4) 
+                  .map(s => `
+                    <img src="${s.image}" alt="screenshot" class="screenshot"/>
+                  `).join('')
               : '<p>No screenshots available</p>'
             }
           </div>
@@ -125,7 +127,8 @@ export const PageDetail = (argument) => {
         ${PageFooter()}
       `;
 
-      
+      attachHeaderEvents();
+
       if (similarGames?.results?.length > 0) {
         displaySimilarGames(similarGames.results);
       } else {
