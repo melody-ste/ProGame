@@ -27,10 +27,10 @@ export const PageDetail = (argument) => {
             </div>
           </div>
           <div class="card-hover">
-            <p>Date de sortie : ${game.released || 'N/A'}</p>
-            <p>Éditeur : ${game.publishers?.map(p => p.name).join(', ') || 'N/A'}</p>
-            <p>Genres : ${game.genres?.map(g => g.name).join(', ') || 'N/A'}</p>
-            <p>Note : ${game.rating || 'N/A'} (${game.ratings_count || 0} votes)</p>
+            <p>${game.released || 'N/A'}</p>
+            <p>${game.publishers?.map(p => p.name).join(', ') || 'N/A'}</p>
+            <p>${game.genres?.map(g => g.name).join(', ') || 'N/A'}</p>
+            <p>${game.rating || 'N/A'} (${game.ratings_count || 0} votes)</p>
           </div>
         </div>
       </article>
@@ -65,26 +65,46 @@ export const PageDetail = (argument) => {
           </div>
           <div>
             <p><strong>Developer</strong></p>
-            <p>${gameData.developers?.map(d => d.name).join(', ') || "N/A"}</p>
+            <p>
+              ${gameData.developers?.map(d => 
+                `<span class="clickable-link" data-route="developers/${d.id}">${d.name}</span>`
+              ).join(', ') || "N/A"}
+            </p>
           </div>
           <div>
             <p><strong>Plateforms</strong></p>
-            <p>${gameData.platforms?.map(p => p.platform.name).join(', ') || 'N/A'}</p>
+            <p>
+              ${gameData.platforms?.map(p => 
+                `<span class="clickable-link" data-route="platforms/${p.platform.id}">${p.platform.name}</span>`
+              ).join(', ') || "N/A"}
+            </p>
           </div>
           <div>
             <p><strong>Publisher</strong></p>
-            <p>${gameData.publishers?.map(p => p.name).join(', ') || 'N/A'}</p>
+            <p>
+              ${gameData.publishers?.map(p => 
+                `<span class="clickable-link" data-route="publishers/${p.id}">${p.name}</span>`
+              ).join(', ') || "N/A"}
+            </p>
           </div>
         </section>
 
         <section class="page-two-column">
           <div>
             <p><strong>Genre</strong></p>
-            <p>${gameData.genres?.map(g => g.name).join(', ') || 'N/A'}</p>
+            <p>
+              ${gameData.genres?.map(g => 
+                `<span class="clickable-link" data-route="genres/${g.id}">${g.name}</span>`
+              ).join(', ') || 'N/A'}
+            </p>
           </div>
           <div>
             <p><strong>Tags</strong></p>
-            <p>${gameData.tags?.map(t => t.name).join(', ') || 'N/A'}</p>
+            <p>
+              ${gameData.tags?.map(t => 
+                `<span class="clickable-link" data-route="tags/${t.id}">${t.name}</span>`
+              ).join(', ') || 'N/A'}
+            </p>
           </div>
         </section>
 
@@ -128,6 +148,15 @@ export const PageDetail = (argument) => {
       `;
 
       attachHeaderEvents();
+
+      document.querySelectorAll(".clickable-link").forEach(el => {
+        el.addEventListener("click", (e) => {
+          const route = e.target.getAttribute("data-route");
+          if (route) {
+            location.hash = `#pagelist/${route}`;
+          }
+        });
+      });
 
       if (similarGames?.results?.length > 0) {
         displaySimilarGames(similarGames.results);

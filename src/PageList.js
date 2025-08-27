@@ -1,5 +1,5 @@
 import { API_KEY } from './config.js';
-import { PageHeader } from "./components/PageHeader.js";
+import { PageHeader, attachHeaderEvents } from "./components/PageHeader.js";
 import { PageFooter } from "./components/Footer.js";
 
 export const PageList = (argument = '') => {
@@ -8,7 +8,7 @@ export const PageList = (argument = '') => {
 
   const init = () => {
     renderBase();
-    attachEventListeners();
+    attachHeaderEvents();
     attachEventListeners();
     const searchQuery = argument.trim().replace(/\s+/g, '-');
     fetchGames(searchQuery);
@@ -25,10 +25,10 @@ export const PageList = (argument = '') => {
       <section class="page-list">
         <div class="controls">
           <select id="platformSelect">
-            <option value="">Plateform : Any</option>
-            <option value="pc">Plateform : PC</option>
-            <option value="playstation">Plateform : PlayStation</option>
-            <option value="xbox">Plateform : Xbox</option>
+            <option value="">Platform : Any</option>
+            <option value="4">Platform : PC</option>
+            <option value="187">Platform : PlayStation 5</option>
+            <option value="1">Platform : Xbox One</option>
           </select>
         </div>
         <div class="cards-grid articles">
@@ -82,26 +82,26 @@ export const PageList = (argument = '') => {
   };
 
   const attachEventListeners = () => {
-    const pageContent = document.getElementById('pageContent'); // récupéré au moment de l'ajout
+    const pageContent = document.getElementById('pageContent');
     const searchInput = pageContent.querySelector('#searchInput');
     const platformSelect = pageContent.querySelector('#platformSelect');
 
-    searchInput.addEventListener('input', () => {
+    const updateGames = () => {
       const query = searchInput.value.trim().replace(/\s+/g, '-');
-      fetchGames(query, platformSelect.value);
-    });
+      fetchGames(query, platformSelect.value, developerSelect.value, publisherSelect.value);
+    };
 
-    platformSelect.addEventListener('change', () => {
-      const query = searchInput.value.trim().replace(/\s+/g, '-');
-      fetchGames(query, platformSelect.value);
-    });
+    if (searchInput) searchInput.addEventListener('input', updateGames);
+    if (platformSelect) platformSelect.addEventListener('change', updateGames);
   };
 
-  const fetchGames = (search = '', platform = '') => {
+  const fetchGames = (search = '', platform = '', developer = '', publisher = '') => {
     const pageContent = document.getElementById('pageContent');
     let url = `https://api.rawg.io/api/games?key=${API_KEY}&page_size=50`;
     if (search) url += `&search=${search}`;
     if (platform) url += `&platforms=${platform}`;
+    if (developer) url += `&developers=${developer}`;
+    if (publisher) url += `&publishers=${publisher}`;
 
     fetch(url)
       .then(res => res.json())

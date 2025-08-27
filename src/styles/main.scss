@@ -130,7 +130,7 @@ h1 {
 }
 
 .page-detail .bg-image {
-  width: 100vw;
+  width: 99vw;
   height: 50rem;
   object-fit: cover;         
   display: block;
@@ -216,6 +216,12 @@ button {
   border: none;
 }
 
+#showMore {
+  display: block;
+  margin: 2rem auto; 
+  cursor: pointer;
+}
+
 ul {
   list-style: none;
   padding-left: 0;
@@ -229,6 +235,17 @@ a {
   color: $color-text;
   text-decoration-color: $color-primary;
   font-weight: bold;
+}
+
+.clickable-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.clickable-link:hover {
+  text-decoration: underline;
+  text-decoration-color: $color-primary;
 }
 
 // ========== FOOTER ========== 
